@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -26,7 +28,21 @@ public class KautotuKud implements Initializable {
     private TextField txtErabiltzaile;
 
     @FXML
-    private TextField txtPasahitza;
+    private PasswordField txtPasahitza;
+
+
+    @FXML
+    private Button kautotuBotoia;
+
+    @FXML
+    private Button kautotuBotoia2;
+
+
+    @FXML
+    void onClick2(ActionEvent event) {
+        comboZerbitzua.getItems().remove(comboZerbitzua.getValue());
+        ZerbitzuKud.getInstance().kendu(comboZerbitzua.getValue().toString());
+    }
 
     public void setMainApp(Main main) {
         this.mainApp = main;
