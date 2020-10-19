@@ -11,7 +11,7 @@
       <ComboBox fx:id="comboZerbitzua" layoutX="202.0" layoutY="44.0" prefHeight="27.0" prefWidth="167.0">
       </ComboBox>
       <Label layoutX="130.0" layoutY="49.0" text="Zerbitzua:" />
-      <Button fx:id="kautotuBotoia" alignment="CENTER" layoutX="226.0" layoutY="220.0" mnemonicParsing="false" onAction="#onClick" text="Kautotu">
+      <Button fx:id="kautotuBotoia" alignment="CENTER" layoutX="226.0" layoutY="220.0" mnemonicParsing="false" onAction="#onClick" text="Ikusi">
          <styleClass>
             <String fx:value="success" />
             <String fx:value="action-btnaction-btn" />
