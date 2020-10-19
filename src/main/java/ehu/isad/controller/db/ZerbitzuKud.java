@@ -40,9 +40,17 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-    public void kendu(String s){
-        String query = "delete from zerbitzuak.services where izena="+s;
+    public void kenduZerbitzua(String s) throws SQLException {
+        String query = "delete from zerbitzuak.services where izena=" + s;
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        dbKudeatzaile.execSQL(query);
+        ResultSet rs = dbKudeatzaile.kenduKudeatzailea(query);
+
+        while (rs.next()) {
+
+            if (rs.getString("izena").equals(s)) {
+                rs.deleteRow();
+            }
+        }
     }
 }
+

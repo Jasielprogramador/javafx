@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,9 +40,9 @@ public class KautotuKud implements Initializable {
 
 
     @FXML
-    void onClick2(ActionEvent event) {
+    void onClick2(ActionEvent event) throws SQLException {
         comboZerbitzua.getItems().remove(comboZerbitzua.getValue());
-        ZerbitzuKud.getInstance().kendu(comboZerbitzua.getValue().toString());
+        ZerbitzuKud.getInstance().kenduZerbitzua(comboZerbitzua.getValue().toString());
     }
 
     public void setMainApp(Main main) {
