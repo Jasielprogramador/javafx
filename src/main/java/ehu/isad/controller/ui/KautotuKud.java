@@ -52,13 +52,9 @@ public class KautotuKud implements Initializable {
     @FXML
     public void onClick(ActionEvent actionEvent) {
 
-        ZerbitzuKud.getInstance().gehitu(comboZerbitzua.getItems().size()+1,comboZerbitzua.getValue().toString());
+        comboZerbitzua.getItems().add(comboZerbitzua.getValue());
+        ZerbitzuKud.getInstance().gehitu(comboZerbitzua.getValue().toString());
 
-        /*List<String> herrialdeakList = ZerbitzuKud.getInstance().lortuZerbitzuak();
-        ObservableList<String> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
-
-        comboZerbitzua.setItems( herrialdeak );
-        comboZerbitzua.setEditable(true);*/
     }
 
     @Override
