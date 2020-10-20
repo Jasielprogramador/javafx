@@ -1,5 +1,7 @@
 package ehu.isad.controller.db;
 
+import ehu.isad.controller.ui.KautotuKud;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +43,13 @@ public class ZerbitzuKud {
     }
 
     public void kendu(String s){
-        String query = "delete from zerbitzuak.services where izena="+s;
+        String query = "delete from zerbitzuak.services where izena='"+s+"'";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        dbKudeatzaile.execSQL(query);
+    }
+
+    public void gehitu(int i,String s){
+        String query = "INSERT INTO zerbitzuak.services (id, izena) VALUES ("+i+","+s+");";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
     }

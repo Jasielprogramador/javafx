@@ -50,15 +50,14 @@ public class KautotuKud implements Initializable {
 
     @FXML
     public void onClick(ActionEvent actionEvent) {
-        System.out.println(txtErabiltzaile.getText() + ":" + txtPasahitza.getText());
-        System.out.println(comboZerbitzua.getValue());
 
-        if ("Flickr".equals(comboZerbitzua.getValue()) &&
-                "juanan".equals(txtErabiltzaile.getText()) &&
-                "pereira".equals(txtPasahitza.getText())) {
+        ZerbitzuKud.getInstance().gehitu(comboZerbitzua.getItems().size()+1,comboZerbitzua.getValue().toString());
 
-            mainApp.mainErakutsi();
-        }
+        /*List<String> herrialdeakList = ZerbitzuKud.getInstance().lortuZerbitzuak();
+        ObservableList<String> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
+
+        comboZerbitzua.setItems( herrialdeak );
+        comboZerbitzua.setEditable(true);*/
     }
 
     @Override
@@ -67,6 +66,7 @@ public class KautotuKud implements Initializable {
         ObservableList<String> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
 
         comboZerbitzua.setItems( herrialdeak );
+        comboZerbitzua.setEditable(true);
 
     }
 

@@ -17,7 +17,7 @@
       <Label layoutX="130.0" layoutY="137.0" text="Pasahitza:" />
       <Label layoutX="130.0" layoutY="49.0" text="Zerbitzua:" />
       <PasswordField fx:id="txtPasahitza" layoutX="202.0" layoutY="133.0" />
-      <Button fx:id="kautotuBotoia" alignment="CENTER" layoutX="136.0" layoutY="197.0" mnemonicParsing="false" onAction="#onClick" text="Ikusi">
+      <Button fx:id="kautotuBotoia" alignment="CENTER" layoutX="136.0" layoutY="197.0" mnemonicParsing="false" onAction="#onClick" text="Sartu">
          <styleClass>
             <String fx:value="success" />
             <String fx:value="action-btnaction-btn" />
