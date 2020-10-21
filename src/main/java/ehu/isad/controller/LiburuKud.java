@@ -1,4 +1,4 @@
-package ehu.isad.controllers;
+package ehu.isad.controller;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 import java.io.IOException;

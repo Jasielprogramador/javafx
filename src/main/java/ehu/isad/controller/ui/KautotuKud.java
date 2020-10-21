@@ -1,4 +1,4 @@
-package ehu.isad.controllers.ui;
+package ehu.isad.controller.ui;
 
 import ehu.isad.Main;
 import ehu.isad.controller.db.ZerbitzuKud;

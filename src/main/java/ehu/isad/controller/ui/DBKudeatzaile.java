@@ -1,8 +1,7 @@
-package ehu.isad.controllers.ui;
+package ehu.isad.controller.ui;
 
 import ehu.isad.utils.Utils;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.Properties;

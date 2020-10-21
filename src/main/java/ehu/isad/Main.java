@@ -1,8 +1,8 @@
 package ehu.isad;
 
 import com.google.gson.Gson;
-import ehu.isad.controllers.LiburuKud;
-import ehu.isad.controllers.XehetasunakKud;
+import ehu.isad.controller.LiburuKud;
+import ehu.isad.controller.XehetasunakKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
