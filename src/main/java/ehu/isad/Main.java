@@ -37,8 +37,6 @@ public class Main extends Application {
     pantailakKargatu();
 
 
-    Book b=(Book)liburuKud.comboZerbitzua.getValue();
-
     stage.setScene(sceneLiburuak);
     stage.show();
   }
@@ -51,6 +49,7 @@ public class Main extends Application {
 
   public void xehetasunakErakutsi() throws IOException {
     liburuaLortu();
+    System.out.println(this.book.getDetails().getTitle());
     xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
     stage.show();
