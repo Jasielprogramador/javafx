@@ -43,21 +43,21 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-    public boolean liburuaJadaKargatuta(String isbn) {
+/*    public boolean liburuaJadaKargatuta(String isbn) {
 
         String query = "select count(*) from liburua where isbn='" + isbn + "' and orriKop>0";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
         boolean emaitza=false;
 
-        if (rs.equals(0)) {
+        if (rs.getInt()) {
             System.out.println("Liburua ez dago kargatuta");
         } else {
             System.out.println("Liburua jada kargatuta dago");
             emaitza=true;
         }
         return emaitza;
-    }
+    }*/
 
     public void jadaKargatutakoLiburuaErabili(Book b) {
 
