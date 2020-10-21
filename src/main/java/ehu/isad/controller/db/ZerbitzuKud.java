@@ -43,29 +43,33 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-/*    public boolean liburuaJadaKargatuta(String isbn) {
+    public boolean liburuaJadaKargatuta(String isbn) {
 
         String query = "select count(*) from liburua where isbn='" + isbn + "' and orriKop>0";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        boolean emaitza=false;
 
-        if (rs.getInt()) {
-            System.out.println("Liburua ez dago kargatuta");
-        } else {
-            System.out.println("Liburua jada kargatuta dago");
-            emaitza=true;
+        int count = 0;
+        try {
+            while (rs.next()) {
+                count = rs.getInt("count(*)");
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
         }
-        return emaitza;
-    }*/
+        if(count==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     public void jadaKargatutakoLiburuaErabili(Book b) {
 
         String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn='"+b.getIsbn()+"'";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-
-
+        
         try {
             String kodea = rs.getString("isbn");
             String izena = rs.getString("title");
@@ -75,13 +79,21 @@ public class ZerbitzuKud {
 
             b.getDetails().setNumber_of_pages(orriKop);
             b.getDetails().setTitle(izena);
-            String[] e=null;
-            e[1]=argitaletxea;
+            String[] e=new String[20];
+            e[0]=argitaletxea;
             b.getDetails().setPublishers(e);
 
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
+
+    }
+
+    public void datuBaseanSartu(Book b){
+        String query = "insert into liburua (isbn,title,orriKop,argitaletxea,irudia) values ('"+b.getIsbn()+"','"+b.getTitle()+"','"+b.getDetails().getNumber_of_pages()+"','"+b.getDetails().getPublishers()[0]+"','"+b.getThumbnail_url()+"'";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        dbKudeatzaile.execSQL(query);
+
 
     }
 }

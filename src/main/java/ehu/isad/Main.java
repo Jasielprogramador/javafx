@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -51,15 +52,14 @@ public class Main extends Application {
   //AQUI HACES LO DE MIRAR SI YA ESTA DENTRO O NO
   public void xehetasunakErakutsi() throws IOException {
 
- /*   if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
+    liburuaLortu();
+    if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
       zerbitzuKud.jadaKargatutakoLiburuaErabili(this.book);
     }
     else{
-      liburuaLortu();
-      xehetasunakKud.putInfo(this.book);
-    }*/
+      zerbitzuKud.datuBaseanSartu(this.book);
+    }
 
-    liburuaLortu();
     xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
     stage.show();
