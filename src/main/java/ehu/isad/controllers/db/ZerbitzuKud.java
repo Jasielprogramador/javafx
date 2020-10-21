@@ -1,6 +1,7 @@
 package ehu.isad.controllers.db;
 
 import ehu.isad.controller.ui.KautotuKud;
+import ehu.isad.controllers.ui.DBKudeatzaile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
