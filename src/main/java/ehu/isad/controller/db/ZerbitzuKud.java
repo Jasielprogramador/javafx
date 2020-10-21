@@ -99,7 +99,7 @@ public class ZerbitzuKud {
     }
 
     public void datuBaseanSartu(Book liburua,Book details){
-        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' where (isbn='"+liburua.getIsbn()+"');";
+        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+details.getDetails().getPublishers()[0]+"' , irudia = '"+liburua.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
