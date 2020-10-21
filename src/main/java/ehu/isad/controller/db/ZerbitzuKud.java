@@ -41,12 +41,6 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-    public void kenduZerbitzua(String s){
-        String query = "delete from zerbitzuak.services where izena='"+s+"'";
-        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        dbKudeatzaile.execSQL(query);
-    }
-
     public void gehitu(String s){
         String query = "insert into zerbitzuak.services (izena) values ('"+s+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
