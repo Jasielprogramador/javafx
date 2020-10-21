@@ -69,7 +69,7 @@ public class Main extends Application {
 
   }
 
-  //Liburu osoa ematen dizu
+  //Liburu osoa ematen dizu, xehetasunak
   public void liburuaLortu() throws IOException {
     Book b=(Book)kautotuKud.comboZerbitzua.getValue();
     readFromUrl(b.isbn);
