@@ -34,7 +34,6 @@ public class Main extends Application {
     stage = primaryStage;
     pantailakKargatu();
 
-
     stage.setScene(sceneLiburuak);
     stage.show();
   }
