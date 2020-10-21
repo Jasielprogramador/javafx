@@ -31,6 +31,7 @@ public class ZerbitzuKud {
 
                 String kodea = rs.getString("isbn");
                 String izena = rs.getString("title");
+                System.out.println(kodea + ":" + izena);
                 emaitza.add(new Book(kodea,izena));
 
             }
