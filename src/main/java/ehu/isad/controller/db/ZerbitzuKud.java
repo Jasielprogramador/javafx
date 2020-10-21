@@ -43,24 +43,19 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-    public boolean liburuaJadaKargatuta(String isbn) {
+    public boolean liburuaJadaKargatuta(String isbn) throws SQLException {
 
-        String query = "select count(*) from liburua where isbn='" + isbn + "' and orriKop>0";
+        String query = "select orriKop from liburua where isbn='" + isbn + "'";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-        int count = 0;
-        try {
-            while (rs.next()) {
-                count = rs.getInt("count(*)");
-            }
-        } catch(SQLException throwables){
-            throwables.printStackTrace();
-        }
-        if(count==0){
-            return false;
-        }else{
+        int orriKopurua=rs.getInt("orriKop");
+
+        if(orriKopurua>0){
             return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -69,7 +64,7 @@ public class ZerbitzuKud {
         String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn='"+b.getIsbn()+"'";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        
+
         try {
             String kodea = rs.getString("isbn");
             String izena = rs.getString("title");

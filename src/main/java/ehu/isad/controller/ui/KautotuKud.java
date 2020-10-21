@@ -44,7 +44,7 @@ public class KautotuKud implements Initializable {
     }
 
     @FXML
-    public void onClick(ActionEvent actionEvent) throws IOException {
+    public void onClick(ActionEvent actionEvent) throws IOException, SQLException {
         mainApp.xehetasunakErakutsi();
     }
 

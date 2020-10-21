@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 
 public class Main extends Application {
 
@@ -49,11 +50,18 @@ public class Main extends Application {
     stage.show();
   }
 
+  //Liburu osoa ematen dizu, xehetasunak
+  public void liburuaLortu() throws IOException {
+    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
+    readFromUrl(b.isbn);
+  }
+
   //AQUI HACES LO DE MIRAR SI YA ESTA DENTRO O NO
-  public void xehetasunakErakutsi() throws IOException {
+  public void xehetasunakErakutsi() throws IOException, SQLException {
 
     liburuaLortu();
-    if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
+    System.out.println(this.book.isbn);
+    /*if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
       zerbitzuKud.jadaKargatutakoLiburuaErabili(this.book);
     }
     else{
@@ -62,7 +70,7 @@ public class Main extends Application {
 
     xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
-    stage.show();
+    stage.show();*/
   }
 
 
@@ -82,13 +90,6 @@ public class Main extends Application {
     sceneXehetasunak=new Scene(xehetasunUI);
 
   }
-
-  //Liburu osoa ematen dizu, xehetasunak
-  public void liburuaLortu() throws IOException {
-    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
-    readFromUrl(b.isbn);
-  }
-
 
 
   public void readFromUrl(String isbn) throws IOException {
