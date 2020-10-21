@@ -41,4 +41,13 @@ public class ZerbitzuKud {
 
         return emaitza;
     }
+
+    public boolean liburuaJadaKargatuta(String isbn){
+
+        String query = "select isbn from liburua where isbn="+isbn;
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+
+        if(rs.)
+    }
 }
