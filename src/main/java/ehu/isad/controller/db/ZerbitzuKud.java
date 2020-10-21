@@ -30,7 +30,7 @@ public class ZerbitzuKud {
             while (rs.next()) {
 
                 String kodea = rs.getString("isbn");
-                String izena = rs.getString("izena");
+                String izena = rs.getString("title");
                 emaitza.add(new Book(kodea,izena));
 
             }
