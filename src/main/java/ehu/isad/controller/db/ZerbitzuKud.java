@@ -1,6 +1,7 @@
 package ehu.isad.controller.db;
 
 import ehu.isad.Book;
+import ehu.isad.BookDetails;
 import ehu.isad.controller.ui.DBKudeatzaile;
 
 import java.sql.ResultSet;
@@ -56,6 +57,32 @@ public class ZerbitzuKud {
             emaitza=true;
         }
         return emaitza;
+    }
+
+    public void jadaKargatutakoLiburuaErabili(Book b) {
+
+        String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn='"+b.getIsbn()+"'";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+
+
+        try {
+            String kodea = rs.getString("isbn");
+            String izena = rs.getString("title");
+            int orriKop=rs.getInt("orriKop");
+            String argitaletxea=rs.getString("argitaletxea");
+            String irudia=rs.getString("irudia");
+
+            b.getDetails().setNumber_of_pages(orriKop);
+            b.getDetails().setTitle(izena);
+            String[] e=null;
+            e[1]=argitaletxea;
+            b.getDetails().setPublishers(e);
+
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
     }
 }
 

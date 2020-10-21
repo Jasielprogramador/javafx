@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -43,8 +44,8 @@ public class KautotuKud implements Initializable {
     }
 
     @FXML
-    public void onClick(ActionEvent actionEvent) {
-
+    public void onClick(ActionEvent actionEvent) throws IOException {
+        mainApp.xehetasunakErakutsi();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package ehu.isad;
 
 import com.google.gson.Gson;
+import ehu.isad.controller.db.XehetasunakKud;
+import ehu.isad.controller.db.ZerbitzuKud;
 import ehu.isad.controller.ui.KautotuKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +25,9 @@ public class Main extends Application {
   private Scene sceneLiburuak;
   private Scene sceneXehetasunak;
   public KautotuKud kautotuKud;
+  public XehetasunakKud xehetasunakKud;
   private Book book;
+  private ZerbitzuKud zerbitzuKud;
 
 
 
@@ -44,12 +48,19 @@ public class Main extends Application {
     stage.show();
   }
 
-/*  public void xehetasunakErakutsi() throws IOException {
-    liburuaLortu();
-    xehetasunakKud.putInfo(this.book);
+  //AQUI HACES LO DE MIRAR SI YA ESTA DENTRO O NO
+  public void xehetasunakErakutsi() throws IOException {
+
+    if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
+      zerbitzuKud.jadaKargatutakoLiburuaErabili(this.book);
+    }
+    else{
+      liburuaLortu();
+      xehetasunakKud.putInfo(this.book);
+    }
     stage.setScene(sceneXehetasunak);
     stage.show();
-  }*/
+  }
 
 
   private void pantailakKargatu() throws IOException {
@@ -61,11 +72,11 @@ public class Main extends Application {
     sceneLiburuak=new Scene(liburuUI);
 
 
-/*    FXMLLoader loaderXehetasun = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
+    FXMLLoader loaderXehetasun = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
     xehetasunUI = (Parent) loaderXehetasun.load();
     xehetasunakKud= loaderXehetasun.getController();
     xehetasunakKud.setMainApp(this);
-    sceneXehetasunak=new Scene(xehetasunUI);*/
+    sceneXehetasunak=new Scene(xehetasunUI);
 
   }
 
