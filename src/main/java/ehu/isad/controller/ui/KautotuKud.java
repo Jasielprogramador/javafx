@@ -45,8 +45,6 @@ public class KautotuKud implements Initializable {
     @FXML
     public void onClick(ActionEvent actionEvent) {
 
-
-
     }
 
     @Override
