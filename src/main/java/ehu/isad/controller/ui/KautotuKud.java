@@ -25,7 +25,7 @@ public class KautotuKud implements Initializable {
     private Main mainApp;
 
     @FXML
-    private ComboBox comboZerbitzua;
+    public ComboBox comboZerbitzua;
 
     @FXML
     private TextField txtErabiltzaile;
@@ -45,8 +45,7 @@ public class KautotuKud implements Initializable {
     @FXML
     public void onClick(ActionEvent actionEvent) {
 
-        comboZerbitzua.getItems().add(comboZerbitzua.getValue());
-        ZerbitzuKud.getInstance().gehitu(comboZerbitzua.getValue().toString());
+
 
     }
 

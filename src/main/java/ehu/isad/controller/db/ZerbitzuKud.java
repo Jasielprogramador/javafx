@@ -21,7 +21,7 @@ public class ZerbitzuKud {
 
     public List<Book> lortuLiburuak() {
 
-        String query = "select isbn,title  from liburua";
+        String query = "select isbn,title from liburua";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
@@ -39,12 +39,5 @@ public class ZerbitzuKud {
         }
 
         return emaitza;
-    }
-
-    public void gehitu(String s){
-        String query = "insert into zerbitzuak.services (izena) values ('"+s+"');";
-        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-
-        dbKudeatzaile.execSQL(query);
     }
 }

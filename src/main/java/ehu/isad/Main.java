@@ -1,6 +1,7 @@
 package ehu.isad;
 
 import com.google.gson.Gson;
+import ehu.isad.controller.ui.KautotuKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +22,7 @@ public class Main extends Application {
   private Stage stage;
   private Scene sceneLiburuak;
   private Scene sceneXehetasunak;
-  public LiburuKud liburuKud;
-  public XehetasunakKud xehetasunakKud;
+  public KautotuKud kautotuKud;
   private Book book;
 
 
@@ -35,8 +35,6 @@ public class Main extends Application {
     pantailakKargatu();
 
 
-    Book b=(Book)liburuKud.comboZerbitzua.getValue();
-
     stage.setScene(sceneLiburuak);
     stage.show();
   }
@@ -47,34 +45,34 @@ public class Main extends Application {
     stage.show();
   }
 
-  public void xehetasunakErakutsi() throws IOException {
+/*  public void xehetasunakErakutsi() throws IOException {
     liburuaLortu();
     xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
     stage.show();
-  }
+  }*/
 
 
   private void pantailakKargatu() throws IOException {
 
     FXMLLoader loaderLiburu = new FXMLLoader(getClass().getResource("/Liburuak.fxml"));
     liburuUI = (Parent) loaderLiburu.load();
-    liburuKud = loaderLiburu.getController();
-    liburuKud.setMainApp(this);
+    kautotuKud = loaderLiburu.getController();
+    kautotuKud.setMainApp(this);
     sceneLiburuak=new Scene(liburuUI);
 
 
-    FXMLLoader loaderXehetasun = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
+/*    FXMLLoader loaderXehetasun = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
     xehetasunUI = (Parent) loaderXehetasun.load();
     xehetasunakKud= loaderXehetasun.getController();
     xehetasunakKud.setMainApp(this);
-    sceneXehetasunak=new Scene(xehetasunUI);
+    sceneXehetasunak=new Scene(xehetasunUI);*/
 
   }
 
   //Liburu osoa ematen dizu
   public void liburuaLortu() throws IOException {
-    Book b=(Book)liburuKud.comboZerbitzua.getValue();
+    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
     readFromUrl(b.isbn);
   }
 
