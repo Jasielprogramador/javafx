@@ -1,5 +1,6 @@
 package ehu.isad.controller.ui;
 
+import ehu.isad.Book;
 import ehu.isad.Main;
 import ehu.isad.controller.db.ZerbitzuKud;
 import javafx.collections.FXCollections;
@@ -59,8 +60,8 @@ public class KautotuKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<String> herrialdeakList = ZerbitzuKud.getInstance().lortuZerbitzuak();
-        ObservableList<String> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
+        List<Book> herrialdeakList = ZerbitzuKud.getInstance().lortuLiburuak();
+        ObservableList<Book> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
 
         comboZerbitzua.setItems( herrialdeak );
         comboZerbitzua.setEditable(true);

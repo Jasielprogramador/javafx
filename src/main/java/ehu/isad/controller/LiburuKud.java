@@ -2,6 +2,7 @@ package ehu.isad.controller;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
+import ehu.isad.controller.db.ZerbitzuKud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,12 +37,7 @@ public class LiburuKud implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Book> books = FXCollections.observableArrayList();
-        books.addAll(
-                new Book("1491910399", "R for Data Science"),
-                new Book("1491946008", "Fluent Python"),
-                new Book("9781491906187", "Data Algorithms"),
-                new Book("1491978236","Natural Language Processing with PyTorch"),
-                new Book("9781491920497","Blockchain: Blueprint for a New Economy"));
+        books.addAll(ZerbitzuKud.getInstance().lortuLiburuak());
 
         comboZerbitzua.setItems(books);
         comboZerbitzua.getSelectionModel().selectFirst();

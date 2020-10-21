@@ -1,5 +1,6 @@
 package ehu.isad.controller.db;
 
+import ehu.isad.Book;
 import ehu.isad.controller.ui.DBKudeatzaile;
 
 import java.sql.ResultSet;
@@ -18,21 +19,19 @@ public class ZerbitzuKud {
     private ZerbitzuKud() {
     }
 
-    public List<String> lortuZerbitzuak() {
+    public List<Book> lortuLiburuak() {
 
-        String query = "select id, izena from services";
+        String query = "select isbn,title  from liburua";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-        List<String> emaitza = new ArrayList<>();
+        List<Book> emaitza = new ArrayList<>();
         try {
             while (rs.next()) {
 
-                int kodea = rs.getInt("id");
+                String kodea = rs.getString("isbn");
                 String izena = rs.getString("izena");
-
-                System.out.println(kodea + ":" + izena);
-                emaitza.add(izena);
+                emaitza.add(new Book(kodea,izena));
 
             }
         } catch(SQLException throwables){
