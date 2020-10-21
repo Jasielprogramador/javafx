@@ -29,7 +29,6 @@ public class Main extends Application {
   public KautotuKud kautotuKud;
   public XehetasunakKud xehetasunakKud;
   private Book book;
-  private ZerbitzuKud zerbitzuKud;
 
 
 
@@ -59,18 +58,22 @@ public class Main extends Application {
   //AQUI HACES LO DE MIRAR SI YA ESTA DENTRO O NO
   public void xehetasunakErakutsi() throws IOException, SQLException {
 
+    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
     liburuaLortu();
-    System.out.println(this.book.isbn);
-    /*if(zerbitzuKud.liburuaJadaKargatuta(this.book.isbn)){
-      zerbitzuKud.jadaKargatutakoLiburuaErabili(this.book);
+
+    if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
+      ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(b,this.book);
+      System.out.println("Jada datu basean kargatuta");
     }
     else{
-      zerbitzuKud.datuBaseanSartu(this.book);
+      System.out.println("Datu basean kargatu");
+      liburuaLortu();
+      ZerbitzuKud.getInstance().datuBaseanSartu(b,this.book);
     }
 
     xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
-    stage.show();*/
+    stage.show();
   }
 
 

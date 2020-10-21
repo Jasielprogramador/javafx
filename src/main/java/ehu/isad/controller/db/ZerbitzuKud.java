@@ -49,34 +49,48 @@ public class ZerbitzuKud {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-        int orriKopurua=rs.getInt("orriKop");
+        //int orriKopurua=rs.getInt("orriKop");
 
-        if(orriKopurua>0){
-            return true;
+        boolean emaitza=false;
+
+        try {
+            while (rs.next()) {
+
+                int orriKopurua = rs.getInt("orriKop");
+                System.out.println(orriKopurua);
+
+                if(orriKopurua>0){
+                    emaitza=true;
+                }
+
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
         }
-        else{
-            return false;
-        }
+
+        return emaitza;
+
     }
 
-    public void jadaKargatutakoLiburuaErabili(Book b) {
+    public void jadaKargatutakoLiburuaErabili(Book b,Book details) {
 
-        String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn='"+b.getIsbn()+"'";
+        String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn="+b.getIsbn()+";";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         try {
+
             String kodea = rs.getString("isbn");
             String izena = rs.getString("title");
             int orriKop=rs.getInt("orriKop");
             String argitaletxea=rs.getString("argitaletxea");
             String irudia=rs.getString("irudia");
 
-            b.getDetails().setNumber_of_pages(orriKop);
-            b.getDetails().setTitle(izena);
+            details.getDetails().setNumber_of_pages(orriKop);
+            details.getDetails().setTitle(izena);
             String[] e=new String[20];
             e[0]=argitaletxea;
-            b.getDetails().setPublishers(e);
+            details.getDetails().setPublishers(e);
 
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -84,10 +98,13 @@ public class ZerbitzuKud {
 
     }
 
-    public void datuBaseanSartu(Book b){
-        String query = "insert into liburua (isbn,title,orriKop,argitaletxea,irudia) values ('"+b.getIsbn()+"','"+b.getTitle()+"','"+b.getDetails().getNumber_of_pages()+"','"+b.getDetails().getPublishers()[0]+"','"+b.getThumbnail_url()+"'";
+    public void datuBaseanSartu(Book liburua,Book details){
+        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' where (isbn='"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
+
+        System.out.println("base de datos");
+
 
 
     }
