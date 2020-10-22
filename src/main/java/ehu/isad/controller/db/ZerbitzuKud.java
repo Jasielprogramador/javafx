@@ -94,19 +94,7 @@ public class ZerbitzuKud {
                     String argitaletxea = rs.getString("argitaletxea");
                     String irudia=rs.getString("irudia");
 
-                    //Irudia gorde
-                    XehetasunakKud xehetasunakKud=new XehetasunakKud();
-                    Image i=xehetasunakKud.createImage(irudia);
-                    String path=xehetasunakKud.saveToFile(i,kodea);
-
-                    liburua.setThumbnail_url(path);
-                    liburua.getDetails().setNumber_of_pages(orriKop);
-                    liburua.getDetails().setTitle(izena);
-
-                    String[] e = new String[20];
-                    e[0] = argitaletxea;
-                    liburua.getDetails().setPublishers(e);
-
+                    liburua=gordeDatuak(liburua,irudia,kodea,orriKop,izena,argitaletxea);
 
                     System.out.println("funciona");
                 }
@@ -117,7 +105,22 @@ public class ZerbitzuKud {
 
         return liburua;
     }
+    public Book gordeDatuak(Book liburua,String irudia,String kodea,int orriKop,String izena,String argitaletxea) throws IOException {
+        //Irudia gorde
 
+        Book b=liburua;
+        XehetasunakKud xehetasunakKud=new XehetasunakKud();
+        String path = xehetasunakKud.irudiaGorde(irudia,kodea);
+        b.setThumbnail_url(path);
+        b.getDetails().setNumber_of_pages(orriKop);
+        b.getDetails().setTitle(izena);
+
+        String[] e = new String[20];
+        e[0] = argitaletxea;
+        b.getDetails().setPublishers(e);
+
+        return b;
+    }
     public void datuBaseanSartu(Book liburua,Book details){
         String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+details.getDetails().getPublishers()[0].replace("\'","\'\'")+"' , irudia = '"+details.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
