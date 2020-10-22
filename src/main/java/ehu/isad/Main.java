@@ -65,6 +65,7 @@ public class Main extends Application {
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
       Book book1=new Book(b.isbn,b.title);
       Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
+
       System.out.println("Details: "+b2.getDetails().getTitle());
       System.out.println("Jada datu basean kargatuta");
       xehetasunakKud.putInfo(b2,b.getIsbn());

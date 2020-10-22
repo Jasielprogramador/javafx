@@ -2,6 +2,7 @@ package ehu.isad.controller.db;
 
 import ehu.isad.Book;
 import ehu.isad.BookDetails;
+import ehu.isad.utils.Utils;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
@@ -16,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class ZerbitzuKud {
 
@@ -121,6 +123,7 @@ public class ZerbitzuKud {
             b.setThumbnail_url(irudia);
         }
 
+
         return b;
     }
     public void datuBaseanSartu(Book b,Book details){
@@ -132,6 +135,7 @@ public class ZerbitzuKud {
 
     }
 
+
     //IRUDIAK KARGATZEKO METODOAK
     public Image createImage(String url) throws IOException {
         URLConnection conn = new URL(url).openConnection();
@@ -142,7 +146,8 @@ public class ZerbitzuKud {
     }
 
     public String saveToFile(Image image, String isbn) {
-        File outputFile = new File("/home/arrosa/Descargas/"+isbn+".jpg");
+        Properties properties = Utils.lortuEzarpenak();
+        File outputFile = new File(properties.getProperty("imagePath")+isbn+".jpg");
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
         try {
             ImageIO.write(bImage, "jpg", outputFile);
