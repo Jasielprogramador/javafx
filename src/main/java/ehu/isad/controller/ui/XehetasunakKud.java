@@ -1,4 +1,4 @@
-package ehu.isad.controller.db;
+package ehu.isad.controller.ui;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
@@ -71,7 +71,7 @@ public class XehetasunakKud implements Initializable {
         lblIzenburua.setText(b.getDetails().getTitle());
         lblOrriKop.setText(Integer.toString(b.getDetails().getNumber_of_pages()));
         lblArgitaletxea.setText(b.getDetails().getPublishers()[0]);
-        imgIrudia.setImage(createImage(b.getThumbnail_url().replace("S","M")));
+//        imgIrudia.setImage(createImage(b.getThumbnail_url().replace("S","M")));
     }
     public void setMainApp(Main main) {
         this.mainApp = main;

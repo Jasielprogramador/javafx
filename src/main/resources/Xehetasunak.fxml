@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="557.0" prefWidth="618.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.db.XehetasunakKud">
+<AnchorPane prefHeight="557.0" prefWidth="618.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.XehetasunakKud">
    <children>
       <Label graphicTextGap="1.0" layoutX="271.0" layoutY="25.0" prefHeight="65.0" prefWidth="306.0" text="Liburuaren xehetasunak">
          <font>

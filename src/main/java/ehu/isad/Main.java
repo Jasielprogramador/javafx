@@ -1,14 +1,13 @@
 package ehu.isad;
 
 import com.google.gson.Gson;
-import ehu.isad.controller.db.XehetasunakKud;
+import ehu.isad.controller.ui.XehetasunakKud;
 import ehu.isad.controller.db.ZerbitzuKud;
 import ehu.isad.controller.ui.KautotuKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -62,16 +61,20 @@ public class Main extends Application {
 
 
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
-      ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(b,this.book);
+      Book book1=new Book(b.isbn,b.title);
+      System.out.println("qqqqq");
+      Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
+      System.out.println("Details: "+b2.getDetails().getTitle());
       System.out.println("Jada datu basean kargatuta");
+      xehetasunakKud.putInfo(b2);
     }
     else{
       System.out.println("Datu basean kargatu");
       liburuaLortu();
       ZerbitzuKud.getInstance().datuBaseanSartu(b,this.book);
+      xehetasunakKud.putInfo(this.book);
     }
 
-    xehetasunakKud.putInfo(this.book);
     stage.setScene(sceneXehetasunak);
     stage.show();
   }

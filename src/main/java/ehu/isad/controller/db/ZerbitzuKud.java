@@ -2,7 +2,6 @@ package ehu.isad.controller.db;
 
 import ehu.isad.Book;
 import ehu.isad.BookDetails;
-import ehu.isad.controller.ui.DBKudeatzaile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,36 +71,45 @@ public class ZerbitzuKud {
 
     }
 
-    public void jadaKargatutakoLiburuaErabili(Book b,Book details) {
-
+    public Book jadaKargatutakoLiburuaErabili(Book b) {
+        Book liburua = b;
+        BookDetails det = new BookDetails();
+        liburua.setDetails(det);
         String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn="+b.getIsbn()+";";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-
+        System.out.println("qq");
         try {
 
-            while(rs.next()) {
-                String kodea = rs.getString("isbn");
-                String izena = rs.getString("title");
-                int orriKop = rs.getInt("orriKop");
-                String argitaletxea = rs.getString("argitaletxea");
-                String irudia = rs.getString("irudia");
+                while(rs.next()) {
+                    String kodea = rs.getString("isbn");
+                    String izena = rs.getString("title");
+                    int orriKop = rs.getInt("orriKop");
+                    String argitaletxea = rs.getString("argitaletxea");
+                    String irudia = rs.getString("irudia");
+                    System.out.println(orriKop);
+                    System.out.println(argitaletxea);
+                    System.out.println(irudia);
+                    liburua.getDetails().setNumber_of_pages(orriKop);
+                    liburua.getDetails().setTitle(izena);
 
-                details.getDetails().setNumber_of_pages(orriKop);
-                details.getDetails().setTitle(izena);
-                String[] e = new String[20];
-                e[0] = argitaletxea;
-                details.getDetails().setPublishers(e);
-            }
+                    String[] e = new String[20];
+                    e[0] = argitaletxea;
+                    liburua.getDetails().setPublishers(e);
+                   // liburua.setThumbnail_url(irudia);
+
+                    System.out.println("funciona");
+                }
 
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
+        System.out.println("Liburuaren izenburua: "+liburua.getDetails().getTitle());
+        return liburua;
     }
 
     public void datuBaseanSartu(Book liburua,Book details){
-        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"'  where (isbn = '"+liburua.getIsbn()+"');";
+        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+details.getDetails().getPublishers()[0].replace("\'","\'\'")+"' , irudia = '"+details.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
