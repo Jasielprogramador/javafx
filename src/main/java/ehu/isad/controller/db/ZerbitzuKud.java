@@ -57,24 +57,17 @@ public class ZerbitzuKud {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-
         boolean emaitza=false;
-
         try {
             while (rs.next()) {
-
                 int orriKopurua = rs.getInt("orriKop");
-                System.out.println(orriKopurua);
-
                 if(orriKopurua>0){
                     emaitza=true;
                 }
-
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return emaitza;
 
     }
@@ -89,7 +82,6 @@ public class ZerbitzuKud {
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         try {
-
                 while(rs.next()) {
                     String kodea = rs.getString("isbn");
                     String izena = rs.getString("title");
@@ -97,10 +89,7 @@ public class ZerbitzuKud {
                     String argitaletxea = rs.getString("argitaletxea");
                     String irudia=rs.getString("irudia");
 
-                    System.out.println("kodea"+irudia);
                     liburua=gordeDatuak(liburua,irudia,kodea,orriKop,izena,argitaletxea);
-
-                    System.out.println("funciona");
                 }
 
         } catch(SQLException | IOException throwables){
@@ -139,7 +128,7 @@ public class ZerbitzuKud {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
-        System.out.println("base de datos");
+        System.out.println("datu basea ondo kargatuta");
 
     }
 
@@ -160,16 +149,12 @@ public class ZerbitzuKud {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(outputFile.getAbsolutePath());
         return outputFile.getAbsolutePath();
     }
 
     public String irudiaGorde(String irudia,String kodea) throws IOException {
-        System.out.println("1");
         Image i=createImage(irudia);
-        System.out.println("2");
         String path=saveToFile(i,kodea);
-        System.out.println(path);
         return path;
     }
     public Image irudiaLortu(String path){
