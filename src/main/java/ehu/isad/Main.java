@@ -45,6 +45,8 @@ public class Main extends Application {
 
   public void mainErakutsi(){
     stage.setScene(sceneLiburuak);
+    stage.setX(500);
+    stage.setY(200);
     stage.show();
   }
 
@@ -62,7 +64,6 @@ public class Main extends Application {
 
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
       Book book1=new Book(b.isbn,b.title);
-      System.out.println("qqqqq");
       Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
       System.out.println("Details: "+b2.getDetails().getTitle());
       System.out.println("Jada datu basean kargatuta");
@@ -76,6 +77,8 @@ public class Main extends Application {
     }
 
     stage.setScene(sceneXehetasunak);
+    stage.setX(300);
+    stage.setY((100));
     stage.show();
   }
 

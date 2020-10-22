@@ -2,7 +2,13 @@ package ehu.isad.controller.db;
 
 import ehu.isad.Book;
 import ehu.isad.BookDetails;
+import ehu.isad.controller.ui.XehetasunakKud;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,7 +54,6 @@ public class ZerbitzuKud {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-        //int orriKopurua=rs.getInt("orriKop");
 
         boolean emaitza=false;
 
@@ -75,10 +80,11 @@ public class ZerbitzuKud {
         Book liburua = b;
         BookDetails det = new BookDetails();
         liburua.setDetails(det);
+
         String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn="+b.getIsbn()+";";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        System.out.println("qq");
+
         try {
 
                 while(rs.next()) {
@@ -86,25 +92,29 @@ public class ZerbitzuKud {
                     String izena = rs.getString("title");
                     int orriKop = rs.getInt("orriKop");
                     String argitaletxea = rs.getString("argitaletxea");
-                    String irudia = rs.getString("irudia");
-                    System.out.println(orriKop);
-                    System.out.println(argitaletxea);
-                    System.out.println(irudia);
+                    String irudia=rs.getString("irudia");
+
+                    //Irudia gorde
+                    XehetasunakKud xehetasunakKud=new XehetasunakKud();
+                    Image i=xehetasunakKud.createImage(irudia);
+                    String path=xehetasunakKud.saveToFile(i,kodea);
+
+                    liburua.setThumbnail_url(path);
                     liburua.getDetails().setNumber_of_pages(orriKop);
                     liburua.getDetails().setTitle(izena);
 
                     String[] e = new String[20];
                     e[0] = argitaletxea;
                     liburua.getDetails().setPublishers(e);
-                   // liburua.setThumbnail_url(irudia);
+
 
                     System.out.println("funciona");
                 }
 
-        } catch(SQLException throwables){
+        } catch(SQLException | IOException throwables){
             throwables.printStackTrace();
         }
-        System.out.println("Liburuaren izenburua: "+liburua.getDetails().getTitle());
+
         return liburua;
     }
 
@@ -115,8 +125,7 @@ public class ZerbitzuKud {
 
         System.out.println("base de datos");
 
-
-
     }
+
 }
 
