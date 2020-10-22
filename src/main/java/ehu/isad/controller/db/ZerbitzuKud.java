@@ -80,17 +80,19 @@ public class ZerbitzuKud {
 
         try {
 
-            String kodea = rs.getString("isbn");
-            String izena = rs.getString("title");
-            int orriKop=rs.getInt("orriKop");
-            String argitaletxea=rs.getString("argitaletxea");
-            String irudia=rs.getString("irudia");
+            while(rs.next()) {
+                String kodea = rs.getString("isbn");
+                String izena = rs.getString("title");
+                int orriKop = rs.getInt("orriKop");
+                String argitaletxea = rs.getString("argitaletxea");
+                String irudia = rs.getString("irudia");
 
-            details.getDetails().setNumber_of_pages(orriKop);
-            details.getDetails().setTitle(izena);
-            String[] e=new String[20];
-            e[0]=argitaletxea;
-            details.getDetails().setPublishers(e);
+                details.getDetails().setNumber_of_pages(orriKop);
+                details.getDetails().setTitle(izena);
+                String[] e = new String[20];
+                e[0] = argitaletxea;
+                details.getDetails().setPublishers(e);
+            }
 
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -99,7 +101,7 @@ public class ZerbitzuKud {
     }
 
     public void datuBaseanSartu(Book liburua,Book details){
-        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+details.getDetails().getPublishers()[0]+"' , irudia = '"+liburua.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
+        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"'  where (isbn = '"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 

@@ -59,7 +59,7 @@ public class Main extends Application {
   public void xehetasunakErakutsi() throws IOException, SQLException {
 
     Book b=(Book)kautotuKud.comboZerbitzua.getValue();
-    liburuaLortu();
+
 
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
       ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(b,this.book);
