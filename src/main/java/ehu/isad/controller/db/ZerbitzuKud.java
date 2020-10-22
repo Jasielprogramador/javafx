@@ -97,7 +97,7 @@ public class ZerbitzuKud {
                     String argitaletxea = rs.getString("argitaletxea");
                     String irudia=rs.getString("irudia");
 
-                    System.out.println(kodea);
+                    System.out.println("kodea"+irudia);
                     liburua=gordeDatuak(liburua,irudia,kodea,orriKop,izena,argitaletxea);
 
                     System.out.println("funciona");
@@ -116,20 +116,21 @@ public class ZerbitzuKud {
 
         Book b=liburua;
 
-/*        if(liburuaJadaKargatuta(kodea)){
-            String path = irudiaGorde(irudia,kodea);
-            b.setThumbnail_url(path);
-        }
-        else{
-            b.setThumbnail_url(irudia);
-        }*/
-
         b.getDetails().setNumber_of_pages(orriKop);
         b.getDetails().setTitle(izena);
 
         String[] e = new String[20];
         e[0] = argitaletxea;
         b.getDetails().setPublishers(e);
+
+        //AQUI EMPIEZA LO DE LA IRUDIA
+        if(liburuaJadaKargatuta(kodea)){
+            String path = irudiaGorde(irudia,kodea);
+            b.setThumbnail_url(path);
+        }
+        else{
+            b.setThumbnail_url(irudia);
+        }
 
         return b;
     }
@@ -142,10 +143,7 @@ public class ZerbitzuKud {
 
     }
 
-
-
-
-
+    //IRUDIAK KARGATZEKO METODOAK
     public Image createImage(String url) throws IOException {
         URLConnection conn = new URL(url).openConnection();
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
@@ -154,21 +152,38 @@ public class ZerbitzuKud {
         }
     }
 
-    private String saveToFile(Image image, String isbn) {
-        File outputFile = new File("~/home/asiertxu/Descargas/"+isbn+".jpg");
+    public String saveToFile(Image image, String isbn) {
+        File outputFile = new File("/home/arrosa/Descargas/"+isbn+".jpg");
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
         try {
             ImageIO.write(bImage, "jpg", outputFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(outputFile.getAbsolutePath());
         return outputFile.getAbsolutePath();
     }
 
     public String irudiaGorde(String irudia,String kodea) throws IOException {
+        System.out.println("1");
         Image i=createImage(irudia);
+        System.out.println("2");
         String path=saveToFile(i,kodea);
+        System.out.println(path);
         return path;
+    }
+    public Image irudiaLortu(String path){
+        BufferedImage img = null;
+        try
+        {
+            img = ImageIO.read(new File(path));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        Image image = SwingFXUtils.toFXImage(img, null);
+        return image;
     }
 
 

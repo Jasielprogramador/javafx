@@ -67,13 +67,13 @@ public class Main extends Application {
       Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
       System.out.println("Details: "+b2.getDetails().getTitle());
       System.out.println("Jada datu basean kargatuta");
-      xehetasunakKud.putInfo(b2);
+      xehetasunakKud.putInfo(b2,b.getIsbn());
     }
     else{
       System.out.println("Datu basean kargatu");
       liburuaLortu();
+      xehetasunakKud.putInfo(this.book,b.getIsbn());
       ZerbitzuKud.getInstance().datuBaseanSartu(b,this.book);
-      xehetasunakKud.putInfo(this.book);
     }
 
     stage.setScene(sceneXehetasunak);
