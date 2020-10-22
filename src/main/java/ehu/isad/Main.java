@@ -70,10 +70,12 @@ public class Main extends Application {
       xehetasunakKud.putInfo(b2);
     }
     else{
+      Book book2=new Book(b.isbn,b.title);
       System.out.println("Datu basean kargatu");
       liburuaLortu();
-      ZerbitzuKud.getInstance().datuBaseanSartu(b,this.book);
-      xehetasunakKud.putInfo(this.book);
+      book2.setDetails(this.book.details);
+      ZerbitzuKud.getInstance().datuBaseanSartu(book2);
+      xehetasunakKud.putInfo(book2);
     }
 
     stage.setScene(sceneXehetasunak);

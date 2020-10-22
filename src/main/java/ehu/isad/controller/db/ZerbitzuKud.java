@@ -2,9 +2,16 @@ package ehu.isad.controller.db;
 
 import ehu.isad.Book;
 import ehu.isad.BookDetails;
-import ehu.isad.controller.ui.XehetasunakKud;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -107,15 +114,15 @@ public class ZerbitzuKud {
         //Irudia gorde
 
         Book b=liburua;
-        XehetasunakKud xehetasunakKud=new XehetasunakKud();
-/*        if(liburuaJadaKargatuta(kodea)){
-            String path = xehetasunakKud.irudiaGorde(irudia,kodea);
+
+        if(liburuaJadaKargatuta(kodea)){
+            String path = irudiaGorde(irudia,kodea);
             b.setThumbnail_url(path);
         }
         else{
             b.setThumbnail_url(irudia);
-        }*/
-        b.setThumbnail_url(irudia);
+        }
+
         b.getDetails().setNumber_of_pages(orriKop);
         b.getDetails().setTitle(izena);
 
@@ -125,14 +132,40 @@ public class ZerbitzuKud {
 
         return b;
     }
-    public void datuBaseanSartu(Book liburua,Book details){
-        String query = "update liburua set orriKop = '"+details.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+details.getDetails().getPublishers()[0].replace("\'","\'\'")+"' , irudia = '"+details.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
+    public void datuBaseanSartu(Book liburua){
+        String query = "update liburua set orriKop = '"+liburua.getDetails().getNumber_of_pages()+"' , argitaletxea = '"+liburua.getDetails().getPublishers()[0].replace("\'","\'\'")+"' , irudia = '"+liburua.getThumbnail_url().replace("S","M")+"' where (isbn = '"+liburua.getIsbn()+"');";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
         System.out.println("base de datos");
 
     }
+    public Image createImage(String url) throws IOException {
+        URLConnection conn = new URL(url).openConnection();
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
+        try (InputStream stream = conn.getInputStream()) {
+            return new Image(stream);
+        }
+    }
+
+    private String saveToFile(Image image, String isbn) {
+        File outputFile = new File("~/home/asiertxu/Descargas/"+isbn+".jpg");
+        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+        try {
+            ImageIO.write(bImage, "jpg", outputFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return outputFile.getAbsolutePath();
+    }
+
+    public String irudiaGorde(String irudia,String kodea) throws IOException {
+        Image i=createImage(irudia);
+        String path=saveToFile(i,kodea);
+        return path;
+    }
+
+
 
 }
 
