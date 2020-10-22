@@ -51,12 +51,12 @@ public class XehetasunakKud implements Initializable {
         lblIzenburua.setText(b.getDetails().getTitle());
         lblOrriKop.setText(Integer.toString(b.getDetails().getNumber_of_pages()));
         lblArgitaletxea.setText(b.getDetails().getPublishers()[0]);
-        if (ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())) {
+ /*       if (ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())) {
             ZerbitzuKud.getInstance().irudiaGorde(b.getThumbnail_url(),b.getIsbn());
         }
         else{
             imgIrudia.setImage(ZerbitzuKud.getInstance().createImage(b.getThumbnail_url().replace("S","M")));
-        }
+        }*/
 
     }
     public void setMainApp(Main main) {
