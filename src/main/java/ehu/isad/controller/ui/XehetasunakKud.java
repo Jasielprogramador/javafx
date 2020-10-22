@@ -2,25 +2,24 @@ package ehu.isad.controller.ui;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import ehu.isad.controller.db.ZerbitzuKud;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.StringConverter;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class XehetasunakKud implements Initializable {
@@ -85,11 +84,17 @@ public class XehetasunakKud implements Initializable {
 
     }
 
-    public void putInfo(Book b) throws IOException {
+    public void putInfo(Book b) throws IOException, SQLException {
         lblIzenburua.setText(b.getDetails().getTitle());
         lblOrriKop.setText(Integer.toString(b.getDetails().getNumber_of_pages()));
         lblArgitaletxea.setText(b.getDetails().getPublishers()[0]);
-        //imgIrudia.setImage(createImage(b.getThumbnail_url().replace("S","M")));
+        if (ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())) {
+
+        }
+        else{
+            imgIrudia.setImage(createImage(b.getThumbnail_url().replace("S","M")));
+        }
+
     }
     public void setMainApp(Main main) {
         this.mainApp = main;

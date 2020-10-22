@@ -3,11 +3,7 @@ package ehu.isad.controller.db;
 import ehu.isad.Book;
 import ehu.isad.BookDetails;
 import ehu.isad.controller.ui.XehetasunakKud;
-import javafx.scene.image.Image;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,13 +101,21 @@ public class ZerbitzuKud {
 
         return liburua;
     }
-    public Book gordeDatuak(Book liburua,String irudia,String kodea,int orriKop,String izena,String argitaletxea) throws IOException {
+
+
+    public Book gordeDatuak(Book liburua,String irudia,String kodea,int orriKop,String izena,String argitaletxea) throws IOException, SQLException {
         //Irudia gorde
 
         Book b=liburua;
         XehetasunakKud xehetasunakKud=new XehetasunakKud();
-        String path = xehetasunakKud.irudiaGorde(irudia,kodea);
-        b.setThumbnail_url(path);
+/*        if(liburuaJadaKargatuta(kodea)){
+            String path = xehetasunakKud.irudiaGorde(irudia,kodea);
+            b.setThumbnail_url(path);
+        }
+        else{
+            b.setThumbnail_url(irudia);
+        }*/
+        b.setThumbnail_url(irudia);
         b.getDetails().setNumber_of_pages(orriKop);
         b.getDetails().setTitle(izena);
 
