@@ -91,7 +91,7 @@ public class ZerbitzuKud {
                     String argitaletxea = rs.getString("argitaletxea");
                     String irudia=rs.getString("irudia");
 
-                    liburua=gordeDatuak(liburua,irudia,kodea,orriKop,izena,argitaletxea);
+                    liburua=gordeDatuak(kodea,izena,irudia,orriKop,argitaletxea);
                 }
 
         } catch(SQLException | IOException throwables){
@@ -102,26 +102,20 @@ public class ZerbitzuKud {
     }
 
 
-    public Book gordeDatuak(Book liburua,String irudia,String kodea,int orriKop,String izena,String argitaletxea) throws IOException, SQLException {
+    public Book gordeDatuak(String kodea,String izena,String irudia,int orriKop,String argitaletxea) throws IOException, SQLException {
         //Irudia gorde
 
-        Book b=liburua;
+        Book b=new Book(kodea,izena);
+        BookDetails det = new BookDetails();
+        b.setDetails(det);
 
+        b.setThumbnail_url(irudia);
         b.getDetails().setNumber_of_pages(orriKop);
         b.getDetails().setTitle(izena);
 
         String[] e = new String[20];
         e[0] = argitaletxea;
         b.getDetails().setPublishers(e);
-
-        //AQUI EMPIEZA LO DE LA IRUDIA
-        if(liburuaJadaKargatuta(kodea)){
-            String path = irudiaGorde(irudia,kodea);
-            b.setThumbnail_url(path);
-        }
-        else{
-            b.setThumbnail_url(irudia);
-        }
 
 
         return b;

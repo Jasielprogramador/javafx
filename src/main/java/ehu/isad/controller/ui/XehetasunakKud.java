@@ -3,7 +3,6 @@ package ehu.isad.controller.ui;
 import ehu.isad.Book;
 import ehu.isad.Main;
 import ehu.isad.controller.db.ZerbitzuKud;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,9 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
