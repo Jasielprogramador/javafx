@@ -30,8 +30,6 @@ public class Main extends Application {
   private Book book;
 
 
-
-
   @Override
   public void start(Stage primaryStage) throws Exception {
 
