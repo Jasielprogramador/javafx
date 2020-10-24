@@ -117,7 +117,6 @@ public class ZerbitzuKud {
         e[0] = argitaletxea;
         b.getDetails().setPublishers(e);
 
-
         return b;
     }
     public void datuBaseanSartu(Book b,Book details){
@@ -129,7 +128,6 @@ public class ZerbitzuKud {
 
     }
 
-
     //IRUDIAK KARGATZEKO METODOAK
     public Image createImage(String url) throws IOException {
         URLConnection conn = new URL(url).openConnection();
@@ -139,7 +137,7 @@ public class ZerbitzuKud {
         }
     }
 
-    public String saveToFile(Image image, String isbn) {
+    private String saveToFile(Image image, String isbn) {
         Properties properties = Utils.lortuEzarpenak();
         File outputFile = new File(properties.getProperty("imagePath")+isbn+".jpg");
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
@@ -156,6 +154,7 @@ public class ZerbitzuKud {
         String path=saveToFile(i,kodea);
         return path;
     }
+
     public Image irudiaLortu(String path){
         BufferedImage img = null;
         try

@@ -59,9 +59,16 @@ public class Main extends Application {
   //AQUI HACES LO DE MIRAR SI YA ESTA DENTRO O NO
   public void xehetasunakErakutsi() throws IOException, SQLException {
 
+    baldintzak();
+    stage.setScene(sceneXehetasunak);
+    stage.setX(300);
+    stage.setY((100));
+    stage.show();
+  }
+
+  private void baldintzak() throws SQLException, IOException {
+
     Book b=(Book)kautotuKud.comboZerbitzua.getValue();
-
-
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
       Book book1=new Book(b.isbn,b.title);
       Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
@@ -73,15 +80,10 @@ public class Main extends Application {
       liburuaLortu();
       String path=ZerbitzuKud.getInstance().irudiaGorde(this.book.getThumbnail_url().replace("S","M"),b.getIsbn());
       this.book.setThumbnail_url(path);
-
       ZerbitzuKud.getInstance().datuBaseanSartu(b,this.book);
       xehetasunakKud.putInfo(this.book,b.getIsbn());
     }
 
-    stage.setScene(sceneXehetasunak);
-    stage.setX(300);
-    stage.setY((100));
-    stage.show();
   }
 
 
