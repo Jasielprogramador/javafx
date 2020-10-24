@@ -28,12 +28,6 @@ public class LiburuakKud implements Initializable {
     @FXML
     public ComboBox comboZerbitzua;
 
-    @FXML
-    private TextField txtErabiltzaile;
-
-    @FXML
-    private PasswordField txtPasahitza;
-
 
     @FXML
     private Button kautotuBotoia;
