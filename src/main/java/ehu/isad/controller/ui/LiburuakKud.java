@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class KautotuKud implements Initializable {
+public class LiburuakKud implements Initializable {
 
     // Reference to the main application.
     private Main mainApp;

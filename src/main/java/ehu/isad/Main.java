@@ -3,7 +3,7 @@ package ehu.isad;
 import com.google.gson.Gson;
 import ehu.isad.controller.ui.XehetasunakKud;
 import ehu.isad.controller.db.ZerbitzuKud;
-import ehu.isad.controller.ui.KautotuKud;
+import ehu.isad.controller.ui.LiburuakKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +25,7 @@ public class Main extends Application {
   private Stage stage;
   private Scene sceneLiburuak;
   private Scene sceneXehetasunak;
-  public KautotuKud kautotuKud;
+  public LiburuakKud liburuakKud;
   public XehetasunakKud xehetasunakKud;
   private Book book;
 
@@ -52,7 +52,7 @@ public class Main extends Application {
 
   //Liburu osoa ematen dizu, xehetasunak
   public void liburuaLortu() throws IOException {
-    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
+    Book b=(Book) liburuakKud.comboZerbitzua.getValue();
     readFromUrl(b.isbn);
   }
 
@@ -68,7 +68,7 @@ public class Main extends Application {
 
   private void baldintzak() throws SQLException, IOException {
 
-    Book b=(Book)kautotuKud.comboZerbitzua.getValue();
+    Book b=(Book) liburuakKud.comboZerbitzua.getValue();
     if(ZerbitzuKud.getInstance().liburuaJadaKargatuta(b.getIsbn())){
       Book book1=new Book(b.isbn,b.title);
       Book b2 = ZerbitzuKud.getInstance().jadaKargatutakoLiburuaErabili(book1);
@@ -91,8 +91,8 @@ public class Main extends Application {
 
     FXMLLoader loaderLiburu = new FXMLLoader(getClass().getResource("/Liburuak.fxml"));
     liburuUI = (Parent) loaderLiburu.load();
-    kautotuKud = loaderLiburu.getController();
-    kautotuKud.setMainApp(this);
+    liburuakKud = loaderLiburu.getController();
+    liburuakKud.setMainApp(this);
     sceneLiburuak=new Scene(liburuUI);
 
 
