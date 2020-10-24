@@ -30,26 +30,21 @@ public class ZerbitzuKud {
     private ZerbitzuKud() {
     }
 
-    public List<Book> lortuLiburuak() {
+    public Book lortuLiburua(String isbn) throws SQLException {
 
-        String query = "select isbn,title from liburua";
+        String query = "select title from liburua where isbn='" + isbn + "'";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
+        Book emaitza = null;
 
-        List<Book> emaitza = new ArrayList<>();
         try {
             while (rs.next()) {
-
-                String kodea = rs.getString("isbn");
-                String izena = rs.getString("title");
-                System.out.println(kodea + ":" + izena);
-                emaitza.add(new Book(kodea,izena));
-
+                String title = rs.getString("title");
+                emaitza=new Book(isbn,title);
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return emaitza;
     }
 

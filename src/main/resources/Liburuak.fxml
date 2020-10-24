@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="530.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.KautotuKud">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="530.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.LiburuakKud">
    <children>
       <Label layoutX="130.0" layoutY="49.0" text="ISBN-a" />
       <Button fx:id="kautotuBotoia" alignment="CENTER" layoutX="226.0" layoutY="220.0" mnemonicParsing="false" onAction="#onClick" text="Ikusi">
@@ -14,6 +14,6 @@
             <String fx:value="success" />
             <String fx:value="action-btnaction-btn" />
          </styleClass></Button>
-      <TextField layoutX="226.0" layoutY="44.0" />
+      <TextField fx:id="txtTestua" layoutX="226.0" layoutY="44.0" />
    </children>
 </AnchorPane>

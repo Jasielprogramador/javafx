@@ -63,8 +63,6 @@ public class XehetasunakKud implements Initializable {
             imgIrudia.setImage(ZerbitzuKud.getInstance().createImage(b.getThumbnail_url().replace("S","M")));
         }
 
-
-
     }
     public void setMainApp(Main main) {
         this.mainApp = main;

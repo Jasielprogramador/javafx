@@ -20,23 +20,17 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class KautotuKud implements Initializable {
+public class LiburuakKud implements Initializable {
 
     // Reference to the main application.
     private Main mainApp;
 
-    @FXML
-    public ComboBox comboZerbitzua;
-
-    @FXML
-    private TextField txtErabiltzaile;
-
-    @FXML
-    private PasswordField txtPasahitza;
-
 
     @FXML
     private Button kautotuBotoia;
+
+    @FXML
+    public TextField txtTestua;
 
 
     public void setMainApp(Main main) {
@@ -50,28 +44,6 @@ public class KautotuKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        ObservableList<Book> books = FXCollections.observableArrayList();
-        books.addAll(ZerbitzuKud.getInstance().lortuLiburuak());
-
-        comboZerbitzua.setItems(books);
-        comboZerbitzua.getSelectionModel().selectFirst();
-        comboZerbitzua.setEditable(false);
-
-        comboZerbitzua.setConverter(new StringConverter<Book>() {
-            @Override
-            public String toString(Book book) {
-                if (book==null)
-                    return "";
-                return book.getTitle();
-
-            }
-
-            @Override
-            public Book fromString(String string) {
-                return null;
-            }
-        });
 
     }
 
