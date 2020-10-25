@@ -74,22 +74,4 @@ public class DBKudeatzaile {
 		return rs;
 	}
 
-	public ResultSet kenduKudeatzailea (String query) {
-		int count = 0;
-		Statement s = null;
-		ResultSet rs = null;
-		try {
-			s = (Statement) conn.createStatement();
-			if (query.toLowerCase().indexOf("delete") == 0) {
-				// select agindu bat
-				rs = this.query(s, query);
-			} else {
-				// update, delete, create agindu bat
-				count = s.executeUpdate(query);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return rs;
-	}
 }
