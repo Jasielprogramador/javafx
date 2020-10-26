@@ -59,18 +59,17 @@ public class ZerbitzuKud {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
-        boolean emaitza=false;
         try {
             while (rs.next()) {
                 int orriKopurua = rs.getInt("orriKop");
                 if(orriKopurua>0){
-                    emaitza=true;
+                     return true;
                 }
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-        return emaitza;
+        return false;
 
     }
 
