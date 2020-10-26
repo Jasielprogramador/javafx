@@ -98,7 +98,7 @@ public class ZerbitzuKud {
     }
 
 
-    public Book gordeDatuak(String kodea,String izena,String irudia,int orriKop,String argitaletxea) throws IOException, SQLException {
+    private Book gordeDatuak(String kodea,String izena,String irudia,int orriKop,String argitaletxea) throws IOException, SQLException {
         //Irudia gorde
 
         Book b=new Book(kodea,izena);
