@@ -75,9 +75,6 @@ public class ZerbitzuKud {
     }
 
     public Book jadaKargatutakoLiburuaErabili(Book b) {
-        Book liburua = b;
-        BookDetails det = new BookDetails();
-        liburua.setDetails(det);
 
         String query = "select isbn,title,orriKop,argitaletxea,irudia from liburua where isbn="+b.getIsbn()+";";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
@@ -91,14 +88,14 @@ public class ZerbitzuKud {
                     String argitaletxea = rs.getString("argitaletxea");
                     String irudia=rs.getString("irudia");
 
-                    liburua=gordeDatuak(kodea,izena,irudia,orriKop,argitaletxea);
+                    b=gordeDatuak(kodea,izena,irudia,orriKop,argitaletxea);
                 }
 
         } catch(SQLException | IOException throwables){
             throwables.printStackTrace();
         }
 
-        return liburua;
+        return b;
     }
 
 
@@ -108,11 +105,9 @@ public class ZerbitzuKud {
         Book b=new Book(kodea,izena);
         BookDetails det = new BookDetails();
         b.setDetails(det);
-
         b.setThumbnail_url(irudia);
         b.getDetails().setNumber_of_pages(orriKop);
         b.getDetails().setTitle(izena);
-
         String[] e = new String[20];
         e[0] = argitaletxea;
         b.getDetails().setPublishers(e);
